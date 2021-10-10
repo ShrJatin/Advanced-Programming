@@ -18,8 +18,9 @@ class Hospital{
     }
 
 
-    private void book_partial(Slot slot, Citizen citizen, int chossen_slot){
+    private Slot book_partial(Citizen citizen, int chossen_slot){
         int show = 0;
+        Slot slot = null;
         for(Slot _slot : slots){
             if(_slot.day == citizen.status.next_due && citizen.status.vaccine.name.equals(_slot.vaccine.name)){
                 if(show == chossen_slot){
@@ -29,6 +30,7 @@ class Hospital{
                 show++;
             }
         }
+        return slot;
     }
 
 
@@ -108,7 +110,7 @@ class Hospital{
                 show++;
             }          
         } else if (citizen.status.status.equals("PARTIALLY VACCINATED")) {
-            book_partial(slot, citizen, chossen_slot);
+            slot = book_partial(citizen, chossen_slot);
         }
 
         modify_slot(citizen, slot);
@@ -129,7 +131,7 @@ class Hospital{
             }  
 
         } else if (citizen.status.status.equals("PARTIALLY VACCINATED")) {
-            book_partial(slot, citizen, chossen_slot);
+            slot = book_partial(citizen, chossen_slot);
         }
 
         modify_slot(citizen, slot);
