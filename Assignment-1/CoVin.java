@@ -230,7 +230,7 @@ public class CoVin{
                         continue;
                     }
 
-                    System.out.println("Select Vaccine");
+                 
                     boolean is_name = true;
                     for(Slot slot : hospitals.get(hospital_id-111111).slots){
                         if(slot.day == day && slot.vaccine.name.equals(vaccines.get(vaccine).name)){
@@ -427,6 +427,7 @@ public class CoVin{
                     hospital.book_slot2(citizen, chossen_slot, vaccine);
 
                 } else if(option.equals("3")) {
+                    System.out.println("---------------------------------");
                     continue;
 
                 } else {
@@ -457,9 +458,7 @@ public class CoVin{
                 if(hospitals.get(hospital_id-111111).slots.size() == 0){
                     System.err.println("No Slots been added Yet.");
                 } else {
-                    for(Slot slot : hospitals.get(hospital_id-111111).slots){
-                        System.out.println("Day: " + slot.day + " Vaccine: " + slot.vaccine.name + " Availabe Qty: " + slot.quantity);
-                    }
+                    hospitals.get(hospital_id-111111).show_slot();
                 }
 
             } else if(choice.equals("7")){
@@ -470,7 +469,7 @@ public class CoVin{
                     continue;
                 }
 
-                System.out.print("Unique ID: ");
+                System.out.print("Enter Patient ID: ");
                 String id = sc.nextLine();;
                 if(!valid(id, 12)){
                     System.out.println("Invalid Input for Unique ID(Can be 12 digit Integer only!)");

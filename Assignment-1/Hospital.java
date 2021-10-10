@@ -51,16 +51,21 @@ class Hospital{
         System.out.println("Slot added by Hospital " + id + " for Day: " + day + ", Available Quantity: " + quantity + " of Vaccine " + vaccine.name);
     }
 
+    void show_slot(){
+        for(Slot slot : slots){
+            System.out.println("Day: " + slot.day + " Vaccine: " + slot.vaccine.name + " Availabe Qty: " + slot.quantity);
+        }
+    }
 
+    
     int show_slots1(Citizen citizen){
 
-        
         int show = 0;
 
         if (citizen.status.status.equals("FULLY VACCINATED")){
             System.out.println("You are already Fully Vaccinated.\nYou don't need to book slot again hence No slots for you will be showed.");
 
-        } else if (citizen.status.status.equals("REGISTERED")) {
+        } else if (citizen.status.status.equals("Citizen REGISTERED")) {
             for(Slot slot : slots)
                 System.out.println(show++ + "-> Day: " + slot.day  + " Availabe Qty: " + slot.quantity + " Vaccine: " + slot.vaccine.name);
             
@@ -82,7 +87,7 @@ class Hospital{
         if (citizen.status.status.equals("FULLY VACCINATED")){
             System.out.println("You are already Fully Vaccinated.\nYou don't need to book slot again hence No slots for you will be showed.");
 
-        } else if (citizen.status.status.equals("REGISTERED")) {
+        } else if (citizen.status.status.equals("Citizen REGISTERED")) {
             for(Slot slot : slots)
                 if(slot.vaccine.name.equals(vacine))
                     System.out.println(show++ + "-> Day: " + slot.day  + " Availabe Qty: " + slot.quantity + " Vaccine: " + slot.vaccine.name);
@@ -101,7 +106,7 @@ class Hospital{
     void book_slot1(Citizen citizen, int chossen_slot){
         Slot slot = null;
         int show=0;
-        if (citizen.status.status.equals("REGISTERED")) {
+        if (citizen.status.status.equals("Citizen REGISTERED")) {
             for(Slot _slot : slots){
                 if(show == chossen_slot){
                     slot = _slot;
@@ -119,7 +124,7 @@ class Hospital{
     void book_slot2(Citizen citizen, int chossen_slot, String vaccine){
         Slot slot = null;
         int show=0;
-        if (citizen.status.status.equals("REGISTERED")) {
+        if (citizen.status.status.equals("Citizen REGISTERED")) {
             for(Slot _slot : slots){
                 if(_slot.vaccine.name.equals(vaccine)){
                     if(show == chossen_slot){

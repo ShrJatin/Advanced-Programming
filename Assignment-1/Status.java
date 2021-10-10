@@ -7,7 +7,7 @@ class Status{
 
     Status(){
         this.dose_count = 0;
-        this.status = "REGISTERED";
+        this.status = "Citizen REGISTERED";
         this.next_due = -1;
     }
 }
