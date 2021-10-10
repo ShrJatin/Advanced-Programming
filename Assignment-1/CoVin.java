@@ -427,7 +427,7 @@ public class CoVin{
                     hospital.book_slot2(citizen, chossen_slot, vaccine);
 
                 } else if(option.equals("3")) {
-                    break;
+                    continue;
 
                 } else {
                     System.out.println("Invalid Input for Options(Can be 1, 2, 3)");
