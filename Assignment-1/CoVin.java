@@ -40,7 +40,7 @@ public class CoVin{
             String choice = sc.nextLine();
 
             if(choice.equals("8")){
-                System.out.println("Thank You for visiting the CoWin Portal. :)\n");
+                System.out.println("Thank You for visiting the CoVin Portal. :)\n");
                 break;
          
             } else if(choice.equals("1")){
@@ -194,6 +194,11 @@ public class CoVin{
                 while(slots_count-->0){
                     System.out.print("Enter Day Number: ");
                     temp = sc.nextLine();
+                    if(temp.equals("0")){
+                        System.out.println("day can not be zero");
+                        System.out.println("---------------------------------");
+                        continue;
+                    }
                     if (valid(temp, -1))  day = Integer.parseInt(temp);
                     else{
                         System.out.println("Invalid Input for Day(Can be Integer only!)");
@@ -359,11 +364,13 @@ public class CoVin{
                     }
                     
                     boolean is_vaccine = false;
+                    String prev_name = null;
                     for(Hospital hosp: hospitals){
                         for(Slot slot : hosp.slots) {
-                            if(slot.vaccine.name.equals(vaccine)){
+                            if(slot.vaccine.name.equals(vaccine) && !hosp.name.equals(prev_name)){
                                 is_vaccine = true;
                                 System.out.println(hosp.id + ", " + hosp.name);
+                                prev_name = hosp.name;
                             }
                         }
                     }
@@ -447,12 +454,21 @@ public class CoVin{
                     System.out.println("---------------------------------");
                     continue;
                 }
-
-                for(Slot slot : hospitals.get(hospital_id-111111).slots){
-                    System.out.println("Day: " + slot.day + " Vaccine: " + slot.vaccine.name + " Availabe Qty: " + slot.quantity);
+                if(hospitals.get(hospital_id-111111).slots.size() == 0){
+                    System.err.println("No Slots been added Yet.");
+                } else {
+                    for(Slot slot : hospitals.get(hospital_id-111111).slots){
+                        System.out.println("Day: " + slot.day + " Vaccine: " + slot.vaccine.name + " Availabe Qty: " + slot.quantity);
+                    }
                 }
 
             } else if(choice.equals("7")){
+
+                if(citizens.size() == 0){
+                    System.out.println("There is no Patient who did register at present");
+                    System.out.println("---------------------------------");
+                    continue;
+                }
 
                 System.out.print("Unique ID: ");
                 String id = sc.nextLine();;
@@ -461,9 +477,8 @@ public class CoVin{
                     System.out.println("---------------------------------");
                     continue;
                 }
-
+                
                 for(Citizen citizen: citizens){
-
                     if (citizen.id.equals(id)){
                       citizen.get_status();
                       break;
