@@ -25,15 +25,13 @@ class Citizen{
             status.next_due = Integer.MAX_VALUE;
 
         } else {
-            status.status = "PARTIALLY VACCINATED";
-            if(status.next_due == -1){
-                status.next_due = slot.day + slot.vaccine.dose_gap;
-            } else {
-                status.next_due += slot.vaccine.dose_gap;
-            }
+            status.status = "PARTIALLY VACCINATED"; 
+            status.next_due = slot.day + slot.vaccine.dose_gap;
         }
     }
 
+    
+    
     void get_status(){
         System.out.println(status.status);
 
