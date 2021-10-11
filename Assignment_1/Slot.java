@@ -2,9 +2,9 @@ package Assignment_1;
 
 class Slot implements Comparable<Slot> {
 
-    int day;
-    int quantity;
-    Vaccine vaccine;
+    private final int day;
+    private final Vaccine vaccine;
+    private int quantity;
 
 
     Slot(int day, int quantity, Vaccine vaccine){
@@ -16,7 +16,22 @@ class Slot implements Comparable<Slot> {
     }
 
     public int compareTo(Slot o) {
-      return this.day - o.day;
+        return this.day - o.day;
     }
 
+    public int getDay() {
+        return day;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public Vaccine getVaccine() {
+        return vaccine;
+    }
+
+    public void setQuantity() {
+        this.quantity--;
+    }
 }
