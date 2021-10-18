@@ -1,0 +1,27 @@
+package Assignment_2;
+
+ import java.util.*;
+ import java.io.*;
+
+ class Reader {
+
+     static BufferedReader reader;
+     static StringTokenizer tokenizer;
+
+     static void init(InputStream input) {
+         reader = new BufferedReader(new InputStreamReader(input));
+         tokenizer = new StringTokenizer("");
+     }
+
+     static String next() throws IOException {
+         while (!tokenizer.hasMoreTokens()) {
+
+             tokenizer = new StringTokenizer(reader.readLine());
+         }
+         return tokenizer.nextToken();
+     }
+
+     static int nextint() throws IOException {
+         return Integer.parseInt(next());
+     }
+ }
