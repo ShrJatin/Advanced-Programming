@@ -16,8 +16,4 @@ package Assignment_2;
      static String next() throws IOException {
          return reader.readLine();
      }
-
-     static int nextint() throws IOException {
-         return Integer.parseInt(next());
-     }
  }

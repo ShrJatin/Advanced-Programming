@@ -3,7 +3,7 @@ package Assignment_2;
 import java.io.*;
 import java.util.*;
 
-class Course implements Utility{
+class Course {
 
     private final ArrayList<Instructor> instructors = new ArrayList<>();
     private final ArrayList<Student> students = new ArrayList<>();
@@ -12,7 +12,7 @@ class Course implements Utility{
     private final ArrayList<Utility> lectures = new ArrayList<>();
     private final ArrayList<Utility> comments = new ArrayList<>();
 
-    boolean isNumeric(String s){
+    private boolean isNumeric(String s){
 
         for(int i = 0; i < s.length(); i++){
             char check = s.charAt(i);
@@ -112,12 +112,14 @@ class Course implements Utility{
                                     System.out.print("Enter filename of video: ");
                                     String filename = Reader.next();
 
-                                    if (!(filename.length() >= 5 && filename.endsWith(".mp4"))) {
-                                        System.out.println("Upload failed!You try to upload a file with wrong extension!");
+                                    String [] result = filename.trim().split(" ");
+
+                                    if (!(result.length == 1 && result[0].length() >= 5 && result[0].endsWith(".mp4"))) {
+                                        System.out.println("Upload failed!You try to upload a file with wrong extension or name!");
                                         continue;
                                     }
 
-                                    instructor.adder(lectures, new Lecture(title, filename, instructor.getName()));
+                                    instructor.adder(lectures, new Lecture(title, result[0], instructor.getName()));
                                 } else {
                                     System.out.println("Error: Invalid option selection for addition of class material");
                                     continue;
@@ -211,7 +213,7 @@ class Course implements Utility{
 
                                 temp = Reader.next();
                                 if (isNumeric(temp)) {
-                                    System.out.println("ID of assessment can ony be an Integer");
+                                    System.out.println("ID of student can ony be an Integer");
                                     continue;
                                 }
                                 int student_id = Integer.parseInt(temp);
@@ -259,7 +261,13 @@ class Course implements Utility{
                                 instructor.viewer(assessments);
 
                                 System.out.print("Enter id of assessment to close: ");
-                                int assessment_chose = Reader.nextint();
+
+                                temp = Reader.next();
+                                if(isNumeric(temp) || Integer.parseInt(temp) >= assessments.size() || Integer.parseInt(temp) < 0){
+                                    System.out.println("Invalid assessment ID");
+                                    continue;
+                                }
+                                int assessment_chose = Integer.parseInt(temp);
 
                                 assessments.removeIf(assessment -> ((Assessment) assessment).getId() == assessment_chose);
 
@@ -379,14 +387,27 @@ class Course implements Utility{
                                     System.out.print(assessment.getProblem() + ": ");
                                     answer = Reader.next();
 
+                                    String [] result = answer.trim().split(" ");
+
+                                    if(!(result.length == 1)){
+                                        System.out.println("Please enter only one word answer!");
+                                        continue;
+                                    }
+
+                                    answer = result[0];
+
                                 } else if (assessment.getType().equals("assignment")) {
                                     System.out.print("Enter filename of assignment: ");
                                     answer = Reader.next();
 
-                                    if (!(answer.length() >= 5 && answer.endsWith(".zip"))) {
-                                        System.out.println("Upload failed!You try to upload a file with wrong extension!");
+                                    String [] result = answer.trim().split(" ");
+                                    if (!(result.length == 1 && result[0].length() >= 5 && result[0].endsWith(".zip"))) {
+                                        System.out.println("Upload failed!You tried to upload a file with wrong extension or name!");
                                         continue;
                                     }
+
+                                    answer = result[0];
+
                                 }
 
                                 if (answer.equals("")) {

@@ -50,9 +50,9 @@ public class Assessment implements Utility, Cloneable{
     public String toString() {
         String print = "";
         if(this.type.equals("assignment")){
-            print = "ID: " + this.id + " Assignment: " + this.problem + " Max Marks: " + this.max_marks + "\n" + "----------------\n";
+            print = "ID: " + this.id + " Assignment: " + this.problem + " Max Marks: " + this.max_marks + "\n" + "----------------";
         } else if(this.type.equals("quiz")){
-            print = "ID: " + this.id + " Question: " + this.problem + "\n" + "----------------\n";
+            print = "ID: " + this.id + " Question: " + this.problem + "\n" + "----------------";
         }
         return print;
     }

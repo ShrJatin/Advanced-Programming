@@ -51,7 +51,7 @@ public class Lecture implements Utility{
         print = "Title" + this.type + ": " + this.title + "\n" +
                  print +
                 "Date of upload: " + timestamp + "\n" +
-                "Uploaded by: " + uploader;
+                "Uploaded by: " + uploader + "\n";
 
         return  print;
     }
