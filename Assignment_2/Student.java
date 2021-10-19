@@ -21,7 +21,7 @@ public class Student implements Viewer {
                 System.out.println(assessment.getSubmission());
             }
         }
-        System.out.println("----------------");
+        System.out.println("----------------\n");
 
         System.out.println("UnGraded Submissions");
         for(Assessment assessment : assessments){
@@ -29,8 +29,7 @@ public class Student implements Viewer {
                 System.out.println(assessment.getSubmission());
             }
         }
-
-        System.out.println("----------------");
+        System.out.println("----------------\n");
     }
 
 
@@ -38,8 +37,13 @@ public class Student implements Viewer {
         return name;
     }
 
-    public ArrayList<Submission> getSubmissions() {
-        return submissions;
+    public ArrayList<Assessment> getAssessments() {
+        return this.assessments;
+    }
+
+    public void setAssessments(Assessment assessment, String submission) {
+      this.assessments.add(assessment);
+      this.assessments.get(this.assessments.size()-1).setSubmission(submission);
     }
 
     public void addComment(ArrayList<Utility> util1, Comment comment){
@@ -48,9 +52,16 @@ public class Student implements Viewer {
 
     @Override
     public void viewer(ArrayList<Utility> util){
-        for(Utility utility : util){
-            System.out.println(utility);
+        if(util.size() == 0) System.out.println("Nothing is added Here");
+        else for(Utility utility : util){
+                System.out.println(utility);
         }
+    }
+
+    @Override
+    public boolean logout(){
+        System.out.println("Logging out...");
+        return false;
     }
 
     @Override

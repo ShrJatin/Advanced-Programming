@@ -8,17 +8,13 @@ package Assignment_2;
      static BufferedReader reader;
      static StringTokenizer tokenizer;
 
-     static void init(InputStream input) {
-         reader = new BufferedReader(new InputStreamReader(input));
+     static void init() {
+         reader = new BufferedReader(new InputStreamReader(System.in));
          tokenizer = new StringTokenizer("");
      }
 
      static String next() throws IOException {
-         while (!tokenizer.hasMoreTokens()) {
-
-             tokenizer = new StringTokenizer(reader.readLine());
-         }
-         return tokenizer.nextToken();
+         return reader.readLine();
      }
 
      static int nextint() throws IOException {

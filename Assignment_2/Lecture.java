@@ -40,7 +40,7 @@ public class Lecture implements Utility{
 
         if(this.slides != null){
             for(int i = 0; i < slides.size(); i++){
-                print += "Slide " + i + ": " + slides.get(i) + "\n";
+                print = print.concat("Slide " + i + ": " + slides.get(i) + "\n");
             }
             print += "Number of slides: " + slides.size() + "\n";
 
@@ -51,7 +51,7 @@ public class Lecture implements Utility{
         print = "Title" + this.type + ": " + this.title + "\n" +
                  print +
                 "Date of upload: " + timestamp + "\n" +
-                "Uploaded by: " + uploader + "\n";
+                "Uploaded by: " + uploader;
 
         return  print;
     }

@@ -4,4 +4,5 @@ import java.util.*;
 
 public interface Viewer {
     void viewer(ArrayList<Utility> util);
+    boolean logout();
 }

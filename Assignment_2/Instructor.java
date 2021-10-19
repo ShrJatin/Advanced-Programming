@@ -29,6 +29,13 @@ public class Instructor implements Adder, Viewer {
     }
 
     @Override
+    public boolean logout(){
+        System.out.println("Logging out...");
+        return false;
+    }
+
+
+    @Override
     public String toString() {
         return this.name;
     }
