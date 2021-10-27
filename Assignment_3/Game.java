@@ -5,25 +5,25 @@ import java.util.*;
 class Game {
 
     private final ArrayList<Floor> floors = new ArrayList<>();
-    private Player player;
     private final Scanner sc = new Scanner(System.in);
 
     void buildArena(){
         for(int i = 0 ; i  < 14; i++){
+
             if(i == 2){
-                floors.add(new ModifiedFloor("Elevator", i,4,new Floor("Empty", 10, 1)));
+                floors.add(new ElevatorLadderFloor(i,new EmptyFloor(10)));
 
             } else if(i == 5){
-                floors.add(new ModifiedFloor("Snake", i,-2, new Floor("Empty", 1, 1)));
+                floors.add(new NormalSnakeFloor(i, new EmptyFloor(1)));
 
             } else if(i == 8){
-                floors.add(new ModifiedFloor("Ladder", i, 2, new Floor("Empty", 12, 1)));
+                floors.add(new NormalLadderFloor(i, new EmptyFloor(12)));
 
             }else if(i == 11){
-                floors.add(new ModifiedFloor("King Cobra", i,-4,new Floor("Empty", 3, 3)));
+                floors.add(new CobraSnakeFloor(i,new EmptyFloor(3)));
 
             }else {
-                floors.add(new Floor("Empty", i, 1));
+                floors.add(new EmptyFloor(i));
             }
         }
     }
@@ -33,7 +33,7 @@ class Game {
         System.out.println("Enter the player name and hit enter");
         String name = sc.nextLine();
 
-        player = new Player(name);
+        Player player = new Player(name);
         buildArena();
 
         System.out.println("The game setup is ready.");
@@ -63,8 +63,13 @@ class Game {
             player.jump(floors.get(new_loc));
         }
 
-        System.out.println("Game Over");
+        System.out.println("\tGame Over\n");
         System.out.println(player.getName() + " accumulated " + player.getPoints() + " points.");
+        System.out.println("Collected prizes by " + player.getName() + ":");
+        int i = 0;
+        for(Prize prize : player.getPrizes()){
+            System.out.println("\t" + ++i + ". " + prize.getPrize());
+        }
         System.out.println("---------------------------------------------------------------");
 
     }
