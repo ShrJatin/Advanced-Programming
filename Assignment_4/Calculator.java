@@ -31,7 +31,7 @@ class Calculator<T> {
 
         } else if (t1 instanceof Integer) {
             if (t2 instanceof Integer) return t1 == t2;
-            else throw new TypeMismatchException("Both argument should be of String type");
+            else throw new TypeMismatchException("Both argument should be of Integer type");
 
         } else throw new InvalidDataTypeException("Invalid Operand Datatype Type");
     }

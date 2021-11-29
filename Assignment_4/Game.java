@@ -19,11 +19,15 @@ public class Game {
                 "Snowball", "Angel", "Bella", "Honeypot"
             };
     private int trials;
+    private Calculator<Integer> intCalculator;
+    private Calculator<String> strCalculator;
+
 
     public Game(int length, int trials) {
 
         this.trials = trials;
         this.rnd = new Random();
+
         this.player = new Player();
         this.sc = new Scanner(System.in);
         this.carpet = new Carpet<>(length);
@@ -76,7 +80,7 @@ public class Game {
 
             System.out.print("\nHit enter for your " + trialList[trials] + " hop");
             sc.nextLine();
-            int hop = rnd.nextInt(20) + 1;
+            int hop = rnd.nextInt(21) + 1;
 
             Tile<SoftToy> tile;
             try {
@@ -105,7 +109,6 @@ public class Game {
                 }
 
                 if (choice.equals("integer")) {
-                    Calculator<Integer> calculator;
                     int n1;
                     int n2;
                     while(true){
@@ -113,9 +116,9 @@ public class Game {
                         intPair = intPair.intPair();
                         n1 = intPair.getEl1();
                         n2 = intPair.getEl2();
-                        calculator = new Calculator<>(n1, n2);
+                        intCalculator = new Calculator<>(n1, n2);
                         try {
-                            calculator.operate();
+                            intCalculator.operate();
                             break;
                         } catch (ZeroDivisionException | InvalidDataTypeException ignored){}
                     }
@@ -131,9 +134,9 @@ public class Game {
                     }
 
                     try {
-                        Integer resC = (Integer) calculator.operate();
+                        Integer resC = (Integer) intCalculator.operate();
                         try {
-                            canAdd = calculator.check(resC, Integer.parseInt(resP));
+                            canAdd = intCalculator.check(resC, Integer.parseInt(resP));
                             if(canAdd) System.out.println("\tCorrect Answer");
 
                         } catch (TypeMismatchException | NullPointerException e) {
@@ -155,12 +158,12 @@ public class Game {
                     System.out.println("Calculate the concatenation of strings " + s1 + " and " + s2);
                     String resp = sc.nextLine();
 
-                    Calculator<String> calculator = new Calculator<>(s1, s2);
+                    strCalculator = new Calculator<>(s1, s2);
 
                     try {
-                        String resC = (String) calculator.operate();
+                        String resC = (String) strCalculator.operate();
                         try {
-                            canAdd = calculator.check(resC, resp);
+                            canAdd = strCalculator.check(resC, resp);
                             if(canAdd) System.out.println("\tCorrect Answer");
                         } catch (TypeMismatchException e) {
                             System.out.println(e.getMessage());
